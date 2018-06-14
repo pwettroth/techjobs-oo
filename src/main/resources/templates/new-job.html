@@ -10,6 +10,8 @@
 
     <form th:object="${jobForm}" method="post">
 
+        <div th:text="${message}"></div>
+
         <div class="form-group">
             <label th:for="name">Name</label>
             <input th:field="*{name}" />
@@ -25,7 +27,32 @@
             </select>
         </div>
 
-        <!-- TODO #5 - Create <select> dropdowns for other job fields -->
+        <div class="form-group">
+            <label th:for="location">Location</label>
+            <select th:field="*{location}">
+                <option th:each="location : *{locations}"
+                        th:value="${location.value}"
+                        th:text="${location.value}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label th:for="coreCompetency">Skills</label>
+            <select th:field="*{coreCompetency}">
+                <option th:each="skill : *{coreCompetencies}"
+                        th:value="${skill.value}"
+                        th:text="${skill.value}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label th:for="positionType">Position Type</label>
+            <select th:field="*{positionType}">
+                <option th:each="position : *{positionTypes}"
+                        th:value="${position.value}"
+                        th:text="${position.value}"></option>
+            </select>
+        </div>
 
         <input type="submit" value="Add Job" />
     </form>
